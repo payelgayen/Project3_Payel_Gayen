@@ -27,7 +27,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", (req, res) => {
-  res.render("pages/users", { users: data.users, title: "All Users" });
+  res.render("pages/users", {
+    users: data.users,
+    title: "All Users",
+    footerclass: "absolutefooter",
+  });
 });
 
 app.get("/schedules", (req, res) => {
