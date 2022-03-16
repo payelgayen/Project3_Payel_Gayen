@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="application.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('../partials/header.ejs') %>
+    <div class="centre-logo">
+        <img src="./assets/logo_mrcoffee.png" alt="dark coffee logo" />
+      </div>
+
+      <h1>Welcome to our schedule website</h1>
+  
+      <div class="cover-pic">
+        <img src="./assets/mr_coffee_salle.jpg" alt="large pic" />
+      </div>
+  
+      <div class="caption-container1">
+        <h2>Chez Mr. Coffee,</h2>
+      </div>
+  
+      <div class="caption-container2">
+        <h3>nous aimons trois teh choses</h3>
+      </div>
+  
+      <div class="holding-container">
+        <div class="internal-container">
+          <img class="cafe" src="./assets/icon_café.png" width="50%" />
+          <h2>Le bon cafe</h2>
+          <span
+            >Wir sind eine ganz normale Familie. Ich wohne zusammen mit meinen
+            Eltern, meiner kleinen Schwester Lisa und unserer Katze Mick. Meine
+            Großeltern wohnen im gleichen Dorf wie wir.</span
+          >
+        </div>
+  
+        <div class="internal-container">
+          <img class="gen" src="./assets/icon_gens.png" width="50%" />
+          <h2>Les gens</h2>
+          <span>
+            Francis arbeitet noch. Sie ist Krankenschwester. Die Anderen sind
+            schon in Rente. Oma Lydia nimmt sich viel Zeit für mich und geht
+            häufig mit mir Kleider oder Schuhe kaufen.</span
+          >
+        </div>
+  
+        <div class="internal-container">
+          <img class="histories" src="./assets/icon_histoires.png" width="50%" />
+          <h2>Les histories</h2>
+          <span
+            >Mein Vater arbeitet bei einer Bank und fährt am Wochenende gern mit
+            seinem Motorrad. Das findet meine Mutter nicht so gut, da sie meint,
+            dass Motorradfahren so gefährlich ist.</span
+          >
+        </div>
+      </div>
+  
+      <a href="button" class="btn">En savoir plus</a>
+  
+      <div class="caption-container3">
+        <h3>Decouvrez notre progamme</h3>
+      </div>
+  
+      <div class="imagewithsentence">
+        <img class="hanging-pic" src="./assets/icon_open.png" alt="openlogo" />
+  
+        <h3>Votre cafe vous accueille 7j/7 :</h3>
+      </div>
+  
+      <div class="sentence-containers">
+        <div class="row1">
+          <div class="card-01"><p>Tous les nardis, retrouvez</p>
+              <h3>les cafes poesies :</h3>
+            
+          </div>
+  
+          <div class="card-02"><p>Tous les jeudis, retrouvez</p>
+              <h3>les cafes philo et debat :</h3></div>
+            
+          </div>
+        </div>
+  
+        <div class="row2">
+          <div class="card01">
+            <h3>
+              Venez ecouter ou lire vos plus beaux poemes : Mr. Coffee offre une
+              consommation a tous les courageux !
+            </h3>
+          </div>
+  
+          <div class="card02">
+            <h3>
+              Autour d'un theme philosophique ou de societee, venez debattre entre
+              experts ou simple curieux.
+            </h3>
+          </div>
+        </div>
+      </div>
+  
+      <div class="last-sentence">
+        Sans oublier nos ateliers et decritures et evenements eceptionnels !
+      </div>
+  
+      <div class="last-para">
+        Rendez-vous sur notre page Contact pour retrouver toutes les infos
+        pratiques
+      </div>
+    <%- include('../partials/footer.ejs', { footerclass: footerclass }) %>
+  </body>
+</html>

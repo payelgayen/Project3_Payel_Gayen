@@ -1,0 +1,32 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "This is my first express project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "modemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/payelgayen/payel_gayen_Project3.git"
+    
+  },
+  "author": "Payel Gayen",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "crypto": "^1.0.1",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "pg-promise": "^10.11.1",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
