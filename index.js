@@ -67,13 +67,13 @@ app.post("/users", urlencodedParser, (req, res) => {
 
 //  create new schedule object
 app.post("/schedules", (req, res) => {
-  const { id, username, day, start_at, end_at } = req.body;
+  const { user_id, username, day, start_at, end_at } = req.body;
   const newUser = {
-    id: firstname,
-    username: lastname,
-    day: email,
-    start_at: "",
-    end_at: "",
+    id: user_id,
+    username: username,
+    day: day,
+    start_time: start_at,
+    end_time: end_at,
   };
   res.send(data.schedules);
 });
