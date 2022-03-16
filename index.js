@@ -65,7 +65,7 @@ app.post("/users", urlencodedParser, (req, res) => {
   res.send(newUser);
 });
 
-// TODO create new schedule object
+//  create new schedule object
 app.post("/schedules", (req, res) => {
   const { id, username, day, start_at, end_at } = req.body;
   const newUser = {
