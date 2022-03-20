@@ -13,7 +13,7 @@
     <table>
       <thead>
         <tr>
-          <th>User Id</th>
+          <th>User Name</th>
           <th>Day</th>
           <th>Start At</th>
           <th>End At</th>
@@ -23,10 +23,12 @@
         <% for(let index = 0; index < schedules.length; index++) { %>
 
         <tr>
-          <td><%= schedules[index].user_id %></td>
+          <td>
+            <%= schedules[index].firstname %> <%= schedules[index].lastname %>
+          </td>
           <td><%= schedules[index].day %></td>
-          <td><%= schedules[index].start_at %></td>
-          <td><%= schedules[index].end_at %></td>
+          <td><%= schedules[index].start_time %></td>
+          <td><%= schedules[index].end_time %></td>
         </tr>
         <% } %>
       </tbody>
@@ -44,16 +46,11 @@
     >
       <h1>Add Schedule</h1>
       <div>
-        <label>Select User Id *</label>
+        <label>Select User *</label>
         <select name="user_id" required>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
+          <% for(let i=0; i <allusers.length; i++) { %> 
+            <option value="<%= allusers[i].id  %>"><%= allusers[i].firstname %> <%= allusers[i].lastname %></option>
+          <% } %> 
         </select>
       </div>
       <div>

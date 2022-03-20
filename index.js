@@ -3,6 +3,9 @@ const path = require("path");
 const app = express();
 const port = 3000;
 const data = require("./data");
+
+const { db } = require("./database");
+
 const { createHash } = require("crypto");
 var bodyParser = require("body-parser");
 
@@ -25,17 +28,41 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/users", (req, res) => {
+app.get("/users", async (req, res) => {
+  let users;
+  try {
+    users = await db.any("SELECT * FROM users"); //Retrieving data from database
+  } catch (e) {
+    //To catch the exception
+    console.log(e);
+    users = []; //If any exception occurs, then setting users with empty array
+  }
   res.render("pages/users", {
-    users: data.users,
+    users: users,
     title: "All Users",
     footerclass: "relativefooter",
   });
 });
 
-app.get("/schedules", (req, res) => {
+app.get("/schedules", async (req, res) => {
+  //using async to use await inside the function
+  let schedule;
+  let allusers;
+  try {
+    schedule = await db.any(
+      "select * from schedule, users where schedule.user_id=users.id"
+    ); //Retrieving all the data from both users and schedule tables
+
+    allusers = await db.any("SELECT * FROM users");
+  } catch (e) {
+    //To catch the exception
+    console.log(e);
+    allusers = [];
+    schedule = []; //If any exception occurs, then setting schedule with empty array
+  }
   res.render("pages/schedules", {
-    schedules: data.schedules,
+    schedules: schedule,
+    allusers: allusers,
     title: "Schedules",
     footerclass: "absolutefooter",
   });

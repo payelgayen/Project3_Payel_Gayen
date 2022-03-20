@@ -4,15 +4,17 @@
   "description": "This is my first express project",
   "main": "index.js",
   "scripts": {
+    "create_db": "psql -U postgres -f sql/create_db.sql",
+    "create_table": "psql -U postgres -d userdatabase -f sql/create_table.sql",
+    "insert_data": "psql -U postgres -d userdatabase -f sql/insert_data.sql",
+    "setup_db": "npm run create_db && npm run create_table && npm run insert_data",
     "start": "node index.js",
     "dev": "modemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/payelgayen/payel_gayen_Project3.git"
-    
   },
   "author": "Payel Gayen",
   "license": "ISC",
