@@ -19,7 +19,6 @@ function create256hash(string) {
 }
 
 app.get("/", (req, res) => {
-  //res.send("Welcome to our schedule website");
   res.render("pages/home", {
     title: "Welcome to our schedule website",
     footerclass: "relativefooter",
@@ -30,7 +29,7 @@ app.get("/users", (req, res) => {
   res.render("pages/users", {
     users: data.users,
     title: "All Users",
-    footerclass: "absolutefooter",
+    footerclass: "relativefooter",
   });
 });
 
@@ -62,20 +61,20 @@ app.post("/users", urlencodedParser, (req, res) => {
     password: create256hash(password),
   };
   data.users.push(newUser);
-  res.send(newUser);
+  res.redirect("/users");
 });
 
 //  create new schedule object
-app.post("/schedules", (req, res) => {
-  const { user_id, username, day, start_at, end_at } = req.body;
-  const newUser = {
-    id: user_id,
-    username: username,
+app.post("/schedules", urlencodedParser, (req, res) => {
+  const { user_id, day, start_at, end_at } = req.body;
+  const newSchedule = {
+    user_id: user_id,
     day: day,
-    start_time: start_at,
-    end_time: end_at,
+    start_at: start_at,
+    end_at: end_at,
   };
-  res.send(data.schedules);
+  data.schedules.push(newSchedule);
+  res.redirect("/schedules");
 });
 
 app.get("*", (req, res) => {

@@ -31,6 +31,53 @@
         <% } %>
       </tbody>
     </table>
+    <p></p>
+    <div><input type="submit" id="clickAddUser" value="Add User" /></div>
+    <form
+      class="input-users"
+      id="input-users"
+      action="/users"
+      method="POST"
+      onsubmit="submitUsers()"
+    >
+      <h1>Add user</h1>
+      <div>
+        <label for="fistname">First Name: *</label>
+        <input id="firstname" type="text" name="firstname" required />
+      </div>
+      <div>
+        <label for="lastname">Last Name: *</label>
+        <input id="lastname" type="text" name="lastname" required />
+      </div>
+      <div>
+        <label for="email">Email: *</label>
+        <input id="email" type="text" name="email" required />
+      </div>
+      <div>
+        <label for="password">Password: *</label>
+        <input id="password" type="text" name="password" required />
+      </div>
+      <input type="submit" value="Submit" />
+    </form>
     <%- include('../partials/footer.ejs') %>
+    <script>
+      const footerclass = document.querySelector("footer");
+      footerclass.className = "absolutefooter";
+      function changeDisplay() {
+        document.getElementById("input-users").style.display = "block";
+        document.getElementById("clickAddUser").style.display = "none";
+        footerclass.className = "relativefooter";
+      }
+
+      function submitUsers() {
+        document.getElementById("input-users").style.display = "none";
+        document.getElementById("clickAddUser").style.display = "block";
+        footerclass.className = "absolutefooter";
+      }
+
+      document
+        .getElementById("clickAddUser")
+        .addEventListener("click", changeDisplay);
+    </script>
   </body>
 </html>

@@ -261,6 +261,10 @@ h2 {
   padding-left: 2px;
 }
 
+.relativefooter {
+  margin-top: 20px;
+}
+
 /* About us */
 
 .image img {
@@ -280,6 +284,25 @@ h2 {
   text-align: center;
 }
 
+table,
+th,
+td {
+  border: 1px solid;
+}
+
+th {
+  background-color: var(--primary);
+  color: white;
+}
+
+.input-table {
+  display: flex;
+  gap: 30px;
+}
+.input-users {
+  display: none;
+  margin-top: 10px;
+}
 .second-sentence {
   font-size: 30px;
   font-family: "Roboto", sans-serif;
@@ -330,15 +353,15 @@ h2 {
 }
 label {
   display: block;
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 input,
 textarea {
   width: 50%;
-  padding: 10px;
+  padding: 10px 5px;
   background: #c4cace;
-  border: none;
+  border: 1px solid;
 }
 .formformat {
   padding-left: 21%;
