@@ -1,8 +1,0 @@
-I have used this footerclass to align the footer content appropriately in different pages.
-
-Initially, I didn't specify any explicit css class to keep the footer at the bottom of the screen, by default "relative" position was used.
-It worked perfectily in my previous project as in all the pages, there was long contents. However, in the users and schedule pages, content
-was not long enough. So, footer appeared at the middle of the page. 
-
-To adjust this, I added a css class to change the position from relative to absolute. but as the home page contains long contents,
-therefore "absolute" was not appropriate there. So, there was a need to make it dynamic based on content length.
