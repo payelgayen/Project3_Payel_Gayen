@@ -21,12 +21,12 @@ function create256hash(string) {
   return createHash("sha256").update(string).digest("hex");
 }
 
-app.get("/", (req, res) => {
-  res.render("pages/home", {
-    title: "Welcome to our schedule website",
-    footerclass: "relativefooter",
-  });
-});
+// app.get("/", (req, res) => {
+//   res.render("pages/home", {
+//     title: "Welcome to our schedule website",
+//     footerclass: "relativefooter",
+//   });
+// });
 
 app.get("/users", async (req, res) => {
   let users;
@@ -44,7 +44,7 @@ app.get("/users", async (req, res) => {
   });
 });
 
-app.get("/schedules", async (req, res) => {
+app.get("/", async (req, res) => {
   //using async to use await inside the function
   let schedule;
   let allusers;
@@ -69,39 +69,76 @@ app.get("/schedules", async (req, res) => {
 });
 
 app.get("/users/:id", (req, res) => {
-  const users = data.users;
-  res.send(users[req.params.id]);
+  // const users = data.users;
+  // res.send(users[req.params.id]);
+  db.any("select * from users where id=$1", [req.params.id])
+    .then(function (data) {
+      res.send(data);
+    })
+    .catch(function (error) {
+      // error;
+    });
+});
+
+app.get("/new", async (req, res) => {
+  let users;
+  try {
+    users = await db.any("SELECT * FROM users"); //Retrieving data from database
+    res.render("pages/newschedules", {
+      allusers: users,
+      title: "Schedules",
+      footerclass: "absolutefooter",
+    });
+  } catch (e) {
+    //To catch the exception
+    console.log(e);
+  }
 });
 
 app.get("/users/:id/schedules", (req, res) => {
-  const schedule = data.schedules;
-  const result = schedule.filter((item) => item.user_id == req.params.id); //using doble equals sign to compare the values only, not the data type
-  res.send(result);
+  // const schedule = data.schedules;
+  // const result = schedule.filter((item) => item.user_id == req.params.id); //using double equals sign to compare the values only, not the data type
+  // res.send(result);
+  db.any("select * from schedule where user_id=$1", [req.params.id])
+    .then(function (data) {
+      res.send(data);
+    })
+    .catch(function (error) {
+      // error;
+    });
 });
 
 app.post("/users", urlencodedParser, (req, res) => {
   const { firstname, lastname, email, password } = req.body;
-  const newUser = {
-    firstname: firstname,
-    lastname: lastname,
-    email: email,
-    password: create256hash(password),
-  };
-  data.users.push(newUser);
-  res.redirect("/users");
+  db.none(
+    "INSERT INTO users(firstname, lastname, email, password) VALUES($1, $2, $3, $4)",
+    [firstname, lastname, email, create256hash(password)]
+  )
+    .then(() => {
+      // success;
+      res.redirect("/users");
+    })
+    .catch((error) => {
+      // error;
+      console.log(error);
+    });
 });
 
 //  create new schedule object
-app.post("/schedules", urlencodedParser, (req, res) => {
+app.post("/new", urlencodedParser, (req, res) => {
   const { user_id, day, start_at, end_at } = req.body;
-  const newSchedule = {
-    user_id: user_id,
-    day: day,
-    start_at: start_at,
-    end_at: end_at,
-  };
-  data.schedules.push(newSchedule);
-  res.redirect("/schedules");
+  db.none(
+    "INSERT INTO schedule(user_id, day, start_time, end_time) VALUES($1, $2, $3, $4)",
+    [user_id, day, start_at, end_at]
+  )
+    .then(() => {
+      // success;
+      res.redirect("/");
+    })
+    .catch((error) => {
+      // error;
+      console.log(error);
+    });
 });
 
 app.get("*", (req, res) => {
